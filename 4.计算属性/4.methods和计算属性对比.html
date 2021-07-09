@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 计算属性的基本使用 -->
+        <div class="pi">
+            <h1>{{fullname}}</h1>
+            <h1>{{fullname}}</h1>
+            <h1>{{fullname}}</h1>
+            <h1>{{fullname}}</h1>
+            <h1>{{GetFullname()}}</h1>
+            <h1>{{GetFullname()}}</h1>
+            <h1>{{GetFullname()}}</h1>
+            <h1>{{GetFullname()}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            // methods里的方法使用多次就会调用多次
+            // 而computed里的计算属性使用多次 也只会调用一次 因为里面有缓存 只要里面的东西没有更改，就只会调用一次
+            const p1 = new Vue({
+                el: ".pi",
+                data: {
+                    name: "111",
+                    age: 222,
+                    address: "aaa",
+                },
+                computed: {
+                    fullname: function () {
+                        console.log("fullname");
+                        return this.name + this.age;
+                    },
+                },
+                methods: {
+                    GetFullname: function () {
+                        console.log("getFullname");
+                        return this.name + this.age;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

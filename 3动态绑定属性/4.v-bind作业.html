@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+    <body>
+        <!-- 需求：点击列表的哪一项，哪一项的文字就显示成红色 -->
+        <ul class="movie">
+            <li
+                v-for="(item,index) in movies"
+                ,v-on:click="cli"
+                ,:class="{active:active,line:line}"
+            >
+                {{item}}
+            </li>
+        </ul>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const llist = new Vue({
+                el: ".movie",
+                data: {
+                    active: true,
+                    line: true,
+                    movies: ["星际穿越", "ssss", "111", "qwe22", "22344"],
+                },
+                methods: {
+                    cli: function () {
+                        this[index].class = "active";
+                        if ((this[index].class = "active")) {
+                            this[index].class = !this.active;
+                        }
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

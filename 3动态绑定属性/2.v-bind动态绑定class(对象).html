@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            .active {
+                color: red;
+            }
+            .line {
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pi">
+            <!-- 通过：语法糖动态绑定类名 使用对象键值对赋予类名及状态 -->
+            <h1 :class="{active:actives,line:line}">w s 111</h1>
+            <button v-on:click="b">点击变色</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+        <script>
+            const pi = new Vue({
+                el: ".pi",
+                data: {
+                    name: "zdj",
+                    age: 22,
+                    con: "china",
+                    actives: true,
+                    line: true,
+                },
+                methods: {
+                    b: function () {
+                        this.line = !this.line;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

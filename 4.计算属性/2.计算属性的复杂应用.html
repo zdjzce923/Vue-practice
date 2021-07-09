@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 计算属性的基本使用 -->
+        <div class="pi">
+            <h1>{{AllPrice}}</h1>
+            <h2>{{AllPrice2}}</h2>
+            <h1>{{AllPrice3}}</h1>
+            <h2 v-for="item in book">{{item}}</h2>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            const p1 = new Vue({
+                el: ".pi",
+                data: {
+                    book: [
+                        { id: 11, book: "jisuanji", price: 44 },
+                        { id: 11, book: "jisuanji", price: 44 },
+                        { id: 11, book: "jisuanji", price: 44 },
+                        { id: 11, book: "jisuanji", price: 44 },
+                        { id: 11, book: "jisuanji", price: 44 },
+                        { id: 11, book: "jisuanji", price: 44 },
+                    ],
+                },
+                computed: {
+                    fullname: function () {
+                        return this.name + this.age + this.address;
+                    },
+                    AllPrice: function () {
+                        let result = 0;
+                        for (let i = 0; i < this.book.length; i++) {
+                            result += this.book[i].price;
+                        }
+                        return result;
+                    },
+                    AllPrice2: function () {
+                        let result1 = 0;
+                        for (let i in this.book) {
+                            result1 += this.book[i].price;
+                        }
+                        return result1;
+                    },
+                    AllPrice3: function () {
+                        let result = 0;
+                        for (let prices of this.book) {
+                            result += prices.price;
+                        }
+                        return result;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

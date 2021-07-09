@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="pi">
+            <!-- v-bind 动态添加属性 -->
+            <img :src="imgUrl" alt="" />
+            <a :href="aHref">百度一下</a>
+            <h1>{{name}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+        <script>
+            const pi = new Vue({
+                el: ".pi",
+                data: {
+                    name: "zdj",
+                    age: 22,
+                    con: "china",
+                    imgUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fs13.sinaimg.cn%2Fbmiddle%2F4d049168cc5e11e7fb13c&refer=http%3A%2F%2Fs13.sinaimg.cn&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1624622966&t=5018c1fcaf4810d08342102fc41a7c5a",
+                    aHref: "http://www.baidu.com",
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 3.计算属性的get set -->
+        <div class="pi">
+            <!-- <h1>{{name}}+" "+{{age}}</h1>
+            <h1>{{name}} {{age}}</h1> -->
+            <h1>{{fullname}}</h1>
+            <h1>{{fullname1}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            const p1 = new Vue({
+                el: ".pi",
+                data: {
+                    name: "111",
+                    age: 222,
+                    address: "aaa",
+                    lastname: "zeng",
+                    firstname: "dj",
+                },
+                computed: {
+                    // 计算属性完整写法
+                    // 计算属性是一个属性 写的时候不带动词 它不是方法
+                    fullname: {
+                        // 当vue解析后 绑定了元素 如果有set方法设置了值 那么会更改
+                        // 一般不用写set方法
+                        set: function (newValue) {
+                            const names = newValue.split(" ");
+                            this.firstname = names[0];
+                            this.lastname = names[1];
+                        },
+                        // get是只读的 设置好了属性后不能改
+                        get: function () {
+                            return this.firstname + " " + this.lastname;
+                        },
+                    },
+                    // 简写
+                    fullname1: function () {
+                        return this.firstname + " " + this.lastname;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
