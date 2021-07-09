@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+    <div class="ip">
+            <h1>{{name}}</h1>
+            <h2>{{age}}</h2>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            // 声明式编程
+            // 这种方法有利于开发 修改参数不用在手动添加到元素上
+            let Person = new Vue({
+                // 将类名为ip的元素挂载在el上
+                el: ".ip",
+                data: {
+                    name: "zdjzdj",
+                    age: 22,
+                },
+            });
+        </script>
+    </body>
+</html>
