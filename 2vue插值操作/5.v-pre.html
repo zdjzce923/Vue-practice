@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="pi">
+            <!-- v-pre 不做任何解析 -->
+            <h1 v-text="name">你好123123123</h1>
+            <h1 v-pre>{{name}}</h1>
+            <h1>{{name}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+        <script>
+            const pi = new Vue({
+                el: ".pi",
+                data: {
+                    name: "zdj",
+                    age: 22,
+                    con: "china",
+                    b: "<a href='www.baidu.com'>百度一下</a>",
+                },
+            });
+        </script>
+    </body>
+</html>

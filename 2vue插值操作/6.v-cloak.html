@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pi">
+            <!-- v-cloak vue解析器解析后 删掉该属性 -->
+            <h1 v-cloak>{{name}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+        <script>
+            setTimeout(() => {
+                const pi = new Vue({
+                    el: ".pi",
+                    data: {
+                        name: "zdj",
+                        age: 22,
+                        con: "china",
+                        b: "<a href='www.baidu.com'>百度一下</a>",
+                    }, 
+                });
+            }, 1000);
+        </script>
+    </body>
+</html>

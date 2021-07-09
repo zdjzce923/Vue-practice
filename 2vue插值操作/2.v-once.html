@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="pi">
+            <!-- v-once 有这个属性名 即使修改了数据也不会发生改变 -->
+            <h1 v-once>{{name}}</h1>
+            <h1>{{name}}</h1>
+            <h1>{{name}} {{con}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12"></script>
+        <script>
+            const pi = new Vue({
+                el: ".pi",
+                data: {
+                    name: "zdj",
+                    age: 22,
+                    con: "china",
+                },
+            });
+        </script>
+    </body>
+</html>
