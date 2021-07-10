@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+
+    <body>
+        <!-- v-on监听事件 语法糖为@事件 -->
+
+        <div class="p1">
+            <!-- 情况1 事件传入的方法没有参数  写括号和不写括号都是一样的-->
+            <button @click="btn1click">111</button>
+            <button @click="btn1click()">写了括号</button>
+            <!-- 情况2 事件传入的方法有1个参数 -->
+            <!-- 传入字符必须带引号，否则会当作对象-->
+            <button @click="btn2click('a')">2222</button>
+            <!-- 如果省略括号 vue解析后 浏览器会默认传入event事件对象-->
+            <button @click="btn2click">2222</button>
+            <!-- 情况3 有两个参数 一个是数据 一个是event事件对象 -->
+            <!-- 如果什么都不传 会默认第一个参数为event 第二个为undefined -->
+            <button @click="btn3click">33333</button>
+            <!-- 如果想要第二个是event 第一个是对象/数据 则可以给字符加上$ -->
+            <button @click="btn3click('a',$event)">33333</button>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const p1 = new Vue({
+                el: ".p1",
+                data: {},
+                methods: {
+                    btn1click() {
+                        console.log("btn111click");
+                    },
+                    btn2click(b) {
+                        console.log(b);
+                    },
+                    btn3click(a, event) {
+                        console.log(a, event);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

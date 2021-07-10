@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="pi">
+            <!-- 1.此时btn的点击会冒泡 导致divclick也执行  -->
+            <!-- 阻止冒泡 v-on:xxx.stop @xxx.stop -->
+            <div @click="divclick">
+                <button @click.stop="btnclick">阻止冒泡</button>
+            </div>
+            <!-- 2.prevent的作用 阻止默认行为 -->
+            <form action="">
+                <!-- 此时点击submit会提交表单 使用.prevent阻止默认行为 -->
+                <input
+                    type="submit"
+                    value="提交"
+                    @click.prevent="submitClick"
+                />
+            </form>
+            <!-- 3.监听某个键盘的按完-->
+            <input type="text" @keyup.enter="keyuup" />
+            <!-- 4. once修饰符 只触发一次-->
+            <button @click.once="clickonce">once</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            const pi = new Vue({
+                el: ".pi",
+                data: {},
+                methods: {
+                    btnclick() {
+                        console.log("btnclick");
+                    },
+                    divclick() {
+                        console.log("divclick");
+                    },
+                    submitClick() {
+                        console.log("submitClick");
+                    },
+                    keyuup() {
+                        console.log("enter");
+                    },
+                    clickonce() {
+                        console.log("clickonce");
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
