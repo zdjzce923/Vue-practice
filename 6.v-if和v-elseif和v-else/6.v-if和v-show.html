@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="p1">
+            <!-- v-if如果为false 是在dom中把整个元素进行删除 -->
+            <div v-if="isshow">
+                <h1>123124</h1>
+            </div>
+            <!-- v-show为false 是给元素加了style display:none 如果要用多次 就用v-show-->
+            <div v-show="isshow">
+                <h1>123124</h1>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const p1 = new Vue({
+                el: ".p1",
+                data: {
+                    isshow: true,
+                },
+                methods: {},
+            });
+        </script>
+    </body>
+</html>

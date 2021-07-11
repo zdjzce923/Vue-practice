@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="p1">
+            <!-- 此时修改isss为false v-else的内容就会显示出来 -->
+            <div v-if="isss">
+                <h1>23123123</h1>
+                <h1>23123123</h1>
+                <h1>23123123</h1>
+            </div>
+            <h1 v-else>else</h1>
+        </div>
+        <div class="p2">
+            <!-- v-else-if -->
+            <h1 v-if="score>=90">优秀</h1>
+            <h1 v-else-if="score>=80">良好</h1>
+            <h1 v-else-if="score>=60">及格</h1>
+            <h1 v-else>不及格</h1>
+        </div>
+        <!-- 上面的方法不好看，而且不好维护 一般不这样写 -->
+        <div class="p3">
+            <h1>{{getRank()}}</h1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const p1 = new Vue({
+                el: ".p1",
+                data: {
+                    isss: true,
+                    isshow: true,
+                },
+                methods: {},
+            });
+            const p2 = new Vue({
+                el: ".p2",
+                data: {
+                    score: 90,
+                },
+                methods: {},
+            });
+            const p3 = new Vue({
+                el: ".p3",
+                data: {
+                    score: 90,
+                },
+                methods: {
+                    getRank() {
+                        let grade = "";
+                        if (this.score >= 90) {
+                            grade = "优秀";
+                        } else if (this.score >= 80) {
+                            grade = "良好";
+                        } else if (this.score >= 60) {
+                            grade = "及格";
+                        } else {
+                            grade = "不及格";
+                        }
+                        return grade;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

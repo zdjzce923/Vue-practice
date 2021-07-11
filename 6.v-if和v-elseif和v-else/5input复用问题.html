@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="user">
+            <!-- 通过切换变量的true和false改变登陆选项 -->
+            <!-- vue在解析代码时 会先在虚拟dom里保存数据 为了提高性能 会把一样的元素进行复用
+            所以就导致用户输入后 点击切换依然是原来输入的东西 并不会清空 解决办法是加个key -->
+            <span v-if="isuser">
+                <label for="ueserName">用户名</label>
+                <input
+                    type="text"
+                    placeholder="请输入用户名"
+                    id="username"
+                    key="abc"
+                />
+            </span>
+            <span v-else>
+                <label for="ueserEmail">邮箱:</label>
+                <input
+                    type="text"
+                    placeholder="请输入用户邮箱"
+                    id="username"
+                    key="bbb"
+                />
+            </span>
+            <button @click="isuser = !isuser">切换登陆方式</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const user = new Vue({
+                el: ".user",
+                data: {
+                    isuser: true,
+                },
+                methods: {},
+            });
+        </script>
+    </body>
+</html>
