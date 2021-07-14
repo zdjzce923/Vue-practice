@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 需求 1.在父子组件的数值后加上input 实现双向绑定 当改变input的值时 自身和父组件的值都发生改变 -->
+        <!-- 需求 2.当父组件的数值发生改变时 子组件为父组件的100倍 反过来父组件为子组件的1/100 -->
+        <template id="tmp1">
+            <div>
+                <h2></h2>
+                <h2>props:{{number1}}</h2>
+                <h2>data: {{sonnum1}}</h2>
+                <input
+                    type="text"
+                    :value="sonnum1"
+                    @input="changenum1"
+                    v-model="sonnum1"
+                />
+                <h2>props:{{number2}}</h2>
+                <h2>data: {{sonnum2}}</h2>
+                <input
+                    type="text"
+                    :value="sonnum2"
+                    @input="changenum2"
+                    v-model="sonnum2"
+                />
+            </div>
+        </template>
+        <div class="app">
+            <son
+                :number1="fnumber1"
+                :number2="fnumber2"
+                @num1change="fnum1change"
+                @num2change="fnum2change"
+            />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                data: {
+                    fnumber1: 1,
+                    fnumber2: 2,
+                },
+                methods: {
+                    fnum1change(value) {
+                        this.fnumber1 = parseInt(value);
+                    },
+                    fnum2change(value) {
+                        this.fnumber2 = parseInt(value);
+                    },
+                },
+                components: {
+                    son: {
+                        template: "#tmp1",
+                        props: {
+                            number1: Number,
+                            number2: Number,
+                        },
+                        data() {
+                            // 我们要让input里的数字和number1还有number2双向绑定
+                            // 但是props是我们要父组件传来的数据 所以就在data里写上两个变量存储这个数据
+                            // 然后在通过双向绑定data里面的数据 输入文本时 改变sonnum1的同时也改变 父组件的number1
+                            return {
+                                sonnum1: this.number1,
+                                sonnum2: this.number2,
+                            };
+                        },
+                        methods: {
+                            changenum1(event) {
+                                this.sonnum1 = event.target.value;
+                                this.$emit("num1change", this.sonnum1);
+                            },
+                            changenum2(event) {
+                                this.sonnum2 = event.target.value;
+                                this.$emit("num2change", this.sonnum2);
+                            },
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

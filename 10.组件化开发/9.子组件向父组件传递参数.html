@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- 子组件传递数据 点击按钮 父组件监听事件打印参数 -->
+        <template id="temp">
+            <div>
+                <button v-for="item in life" @click="sonclick">
+                    {{item.name}}
+                </button>
+            </div>
+        </template>
+        <div class="app">
+            <son1 @sonclick="faaccept"></son1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const son1 = {
+                template: "#temp",
+                data() {
+                    return {
+                        life: [
+                            { id: "shenghuo", name: "生活" },
+                            { id: "yongpin", name: "用品" },
+                            { id: "movie", name: "电影" },
+                            { id: "jiaju", name: "家居" },
+                        ],
+                    };
+                },
+                methods: {
+                    // 创建传递给父组件的函数 使用$emit进行发射事件和数据
+                    sonclick(item) {
+                        this.$emit("sonclick", item);
+                    },
+                },
+            };
+            const app = new Vue({
+                el: ".app",
+                components: {
+                    son1,
+                },
+                // 创建接受子组件传递的数据
+                methods: {
+                    faaccept(item) {
+                        console.log(item);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

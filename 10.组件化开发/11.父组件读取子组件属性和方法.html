@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="temp">
+            <div>
+                <h2></h2>
+            </div>
+        </template>
+        <div class="app">
+            <cpn></cpn>
+            <cpn ref="aaa"></cpn>
+            <button @click="readchild">按钮</button>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                methods: {
+                    readchild() {
+                        /*  1.父组件访问所有子组件 $children 
+                            for (let i of this.$children) {
+                                 console.log(i.name);
+                                i.showmss();
+                        } */
+                        // 2.$refs可以获取到ref值的某个子组件
+                        this.$refs.aaa.showmss();
+                        console.log(this.$refs.aaa.name);
+                    },
+                },
+                components: {
+                    cpn: {
+                        template: "#temp",
+                        data() {
+                            return {
+                                name: "我是子组件",
+                            };
+                        },
+                        methods: {
+                            showmss() {
+                                console.log("i am child");
+                            },
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

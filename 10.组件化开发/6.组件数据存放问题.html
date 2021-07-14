@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="app2">
+            <cpnnum></cpnnum>
+        </div>
+        <!-- 抽离组件1 -->
+        <template id="temp1">
+            <div>
+                <!-- 直接在元素里面写上文字实在是low 可以将这部分也抽离出来 使用mustache 
+                     并且在组件中定义data函数-->
+                <h2>{{changeNum}}</h2>
+                <button @click="add">+</button>
+                <button @click="sub">-</button>
+            </div>
+        </template>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            // 2.全局创建+注册组件构造器
+            Vue.component("cpnnum", {
+                template: "#temp1",
+                data() {
+                    /*    在组件中创建data函数 并且在里面返回一个对象 
+                     这样在多次调用组件的时候  每次调用都会返回一个新的对象
+                         里面的值不会因为其他的发生改变而改变 */
+                    return {
+                        changeNum: 0,
+                    };
+                },
+                // 组件也可以有自己的方法 并且在模板中使用
+                methods: {
+                    add() {
+                        this.changeNum++;
+                    },
+                    sub() {
+                        this.changeNum--;
+                    },
+                },
+            });
+            // 注册局部组件
+            const app = new Vue({
+                el: ".app2",
+                // 局部创建+注册组件语法糖
+                components: {
+                    cpn2: {
+                        template: "#temp2",
+                    },
+                },
+                // 给绑定的元素写增加和减的方法
+                methods: {},
+            });
+        </script>
+    </body>
+</html>

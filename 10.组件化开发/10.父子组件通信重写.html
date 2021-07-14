@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="temp">
+            <div>
+                <h2>props</h2>
+                <h2>{{sonnum1}}</h2>
+                <h2>{{sonnum2}}</h2>
+
+                <h2>data</h2>
+                <h2>{{dsonnum1}}</h2>
+                <h2>{{dsonnum2}}</h2>
+                <input
+                    type="text"
+                    placeholder="第一个数"
+                    :value="dsonnum1"
+                    @input="numchange1"
+                />
+                <input
+                    type="text"
+                    placeholder="第二个数"
+                    :value="dsonnum2"
+                    @input="numchange2"
+                />
+            </div>
+        </template>
+        <div class="app">
+            <cpn
+                :sonnum1="num1"
+                :sonnum2="num2"
+                @changesonname1="setfnum1"
+                @changesonname2="setfnum2"
+            />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                data: {
+                    num1: 1,
+                    num2: 2,
+                },
+                methods: {
+                    setfnum1(value) {
+                        this.num1 = parseInt(value);
+                    },
+                    setfnum2(value) {
+                        this.num2 = parseInt(value);
+                    },
+                },
+                components: {
+                    cpn: {
+                        template: "#temp",
+                        props: {
+                            sonnum1: Number,
+                            sonnum2: Number,
+                        },
+                        // 定义组件数据 在模版中可以对数据进行绑定 以便传值给父组件
+                        data() {
+                            return {
+                                dsonnum1: this.sonnum1,
+                                dsonnum2: this.sonnum2,
+                            };
+                        },
+                        methods: {
+                            // 定义numchange函数 当输入数值后 获取数值发射给父组件
+                            numchange1(event) {
+                                this.dsonnum1 = event.target.value;
+                                this.$emit("changesonname1", this.dsonnum1);
+                            },
+                            numchange2(event) {
+                                this.dsonnum2 = event.target.value;
+                                this.$emit("changesonname2", this.dsonnum2);
+                            },
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="tmp1">
+            <div>
+                <h2>我是子组件</h2>
+                <div>{{hi}}</div>
+                <ul>
+                    <li v-for="item in movies">{{item}}</li>
+                </ul>
+            </div>
+        </template>
+        <div class="app">
+            <cpn1></cpn1>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            // 做了什么事 1.把子组件绑定到父组件中/2.设置父组件的数据
+            // 3.在子组件中创建props传入值   4.在模板元素中使用props的值
+            // 5.在vue绑定的元素中放入子组件并赋值
+            const app = new Vue({
+                el: ".app",
+                data: {
+                    movies: ["肖申克", "霸王", "阿飞", "钢琴师"],
+                    hi: "hello father",
+                },
+                components: {
+                    cpn1: {
+                        template: "#tmp1",
+                        // props用于接受父组件传递过来的数据
+                        // 1.用数组进行传递
+                        // props: ["hi", "movies"],
+                        // 2.使用对象进行定义数据类型
+                        // props: {
+                        //     movies: Array,
+                        //     hi: String,
+                        // },
+                        // 3.使用对象定义数据类型 和默认参数
+                        props: {
+                            hi: {
+                                type: String,
+                                default: "我是hi的默认值",
+                                // 必传值
+                                required: true,
+                            },
+                            movies: {
+                                type: Array,
+                                default() {
+                                    return ["我是movies的默认值"];
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

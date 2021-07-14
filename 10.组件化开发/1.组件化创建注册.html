@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="app">
+            <my-con></my-con>
+            <my-con></my-con>
+            <my-con></my-con>
+        </div>
+        <!-- 组件化开发可以保证组件被重复利用 便于开发维护 -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            // 1.创建组件构造器对象
+            const cpn = Vue.extend({
+                template: ` <div>
+                    <h2>1111</h2>
+                    <p>2222</p>
+                    <p>2222</p>
+                    <p>2222</p>
+                  </div>`,
+            });
+            // 2.注册组件 Vue.component(标签名，要注册的构造器)
+            Vue.component("my-con", cpn);
+            // 绑定元素
+            const app = new Vue({
+                el: ".app",
+            });
+        </script>
+    </body>
+</html>

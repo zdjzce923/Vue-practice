@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="app2">
+            <cpn2></cpn2>
+        </div>
+        <!-- 抽离组件1 -->
+        <template id="temp1">
+            <div>
+                <h2>我是父组件局</h2>
+            </div>
+        </template>
+        <template id="tempson">
+            <div>
+                <h2>我是子组件</h2>
+            </div>
+        </template>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            // 1.创建组件构造器 (子组件)
+            // const cpn1 = Vue.extend({
+            //     template: `
+            //         <div>
+            //             <h2>子组件</h2>
+            //         </div>`,
+            // });
+            // 创建子组件
+            Vue.component("cpn1son", {
+                template: "#tempson",
+            });
+            // 2.注册组件
+            Vue.component("cpn1", {
+                template: "#temp1",
+                components: {
+                    // cpn1sons: cpn1son,
+                },
+            });
+            // 注册局部组件
+            const app = new Vue({
+                el: ".app2",
+                // 局部注册组件语法糖
+                components: {
+                    cpn2: cpn1,
+                },
+            });
+        </script>
+    </body>
+</html>
