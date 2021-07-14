@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+            // 1.filter高阶函数 不会改变原数组的值 传入一个回调函数 内部会对返回值进行判断 为true的放到新数组中
+            const arr = [1, 2, 3, 4, 5, 6];
+            let new_arr = arr.filter((n) => {
+                return n > 2;
+            });
+            console.log(new_arr);
+            // 2.map高阶函数 不会改变原数组的值 传入回调 对数组进行遍历 最后返回想要的结果
+            let new_map = new_arr.map((n) => {
+                return n * 3;
+            });
+            console.log(new_map);
+            // 3.reduce 传入回调和初始值 回调函数有4个参数其中两个参数是必传的 pre和数组
+            // return后面的结果会作为下一次pre的值
+            let new_reduce = new_map.reduce((pre, num) => {
+                return pre + num;
+            }, 0);
+            console.log(new_reduce);
+        </script>
+    </body>
+</html>

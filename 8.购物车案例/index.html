@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./index.css" />
+    </head>
+    <body>
+        <div class="bookss">
+            <div v-if="this.books.length>0">
+                <table for="">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>书籍名称</th>
+                            <th>出版日期</th>
+                            <th>价格</th>
+                            <th>购买数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) of books">
+                            <td>{{item.number}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.date}}</td>
+                            <td>{{item.price | showprice}}</td>
+                            <td>
+                                <button
+                                    @click="btnsub(index)"
+                                    :disabled="item.num2<=1"
+                                >
+                                    -
+                                </button>
+                                {{item.num2}}
+                                <button @click="btnadd(index)">+</button>
+                            </td>
+                            <td>
+                                <button @click="remove(index)">移除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>总价格：{{allPrice}}</h2>
+            </div>
+            <h2 v-else>购物车为空</h2>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="./index.js"></script>
+    </body>
+</html>
