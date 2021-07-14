@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+    <body>
+        <div class="licolor">
+            <ul>
+                <li
+                    v-for="(item,index) of movie"
+                    :class="{active:currentindex === index}"
+                    @click="clickli(index)"
+                >
+                    {{index}}.{{item}}
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const liColor = new Vue({
+                el: ".licolor",
+                data: {
+                    movie: ["钢之豆丁", "鲁鲁修", "命运之夜", "进击巨人"],
+                    currentindex: 0,
+                },
+                methods: {
+                    clickli(index) {
+                        this.currentindex = index;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <nav class="p1">
+            <!-- 循环数组 -->
+            <ul>
+                <li v-for="name of star">{{name}}</li>
+            </ul>
+            <!-- 要获取索引就多加一个元组属性 -->
+            <ul>
+                <li v-for="(value,index) of star">{{index}}--{{name}}</li>
+            </ul>
+        </nav>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const p1 = new Vue({
+                el: ".p1",
+                data: {
+                    star: ["zdj", "zce", "hcy", "fbb"],
+                },
+                methods: {},
+            });
+        </script>
+    </body>
+</html>

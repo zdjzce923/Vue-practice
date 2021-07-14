@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        .active {
+            color: red;
+        }
+    </style>
+    <body>
+        <!-- 思路 1.首先遍历数组获取元素和索引
+                 2.绑定类名 使类名的布尔值 = 当前的索引值 === currentIndex
+                 3.绑定响应事件 当单击事件触发时 调用单击函数 里面设置currentIndex等于当前索引 就能出发类名为true -->
+        <div class="licolor">
+            <!-- 需求：点击li将颜色改变成红色，没点的为黑色 -->
+            <ul>
+                <!-- 1.遍历数组获取value和index 2.动态绑定样式类名  -->
+                <li
+                    v-for="(item,index) of movie"
+                    :class="{active:currentIndex === index}"
+                    @click="clickli(index)"
+                >
+                    {{index}}.{{item}}
+                </li>
+            </ul>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const liColor = new Vue({
+                el: ".licolor",
+                data: {
+                    movie: ["钢之豆丁", "鲁鲁修", "命运之夜", "进击巨人"],
+                    // 设置当前选中的变量为0
+                    currentIndex: 0,
+                },
+                methods: {
+                    clickli(index) {
+                        // 让选中的变量等于当前点击的索引 使其相等为true使class生效
+                        this.currentIndex = index;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

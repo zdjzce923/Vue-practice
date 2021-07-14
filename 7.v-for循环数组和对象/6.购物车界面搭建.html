@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <style>
+        table {
+            /* margin: 0; */
+            border-collapse: collapse;
+            border: 1px solid rgb(78, 130, 146);
+            width: 500px;
+            text-align: center;
+            background: rgb(171, 209, 228);
+            color: white;
+        }
+        thead {
+            color: rgb(34, 109, 114);
+        }
+        th,
+        td {
+            border: 1px solid rgb(78, 130, 146);
+        }
+    </style>
+    <body>
+        <div class="books">
+            <div v-if="bookShop.length>0">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>书籍名称</th>
+                            <th>出版日期</th>
+                            <th>价格</th>
+                            <th>购买数量</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(item,index) of bookShop">
+                            <td>{{item.number}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.date}}</td>
+                            <!-- 添加过滤器filters 添加两位小数 -->
+                            <td>{{item.price | showPrice}}</td>
+                            <td>
+                                <button
+                                    @click="sub(index)"
+                                    :disabled="item.num2 <= 1"
+                                >
+                                    -
+                                </button>
+                                {{item.num2}}
+                                <button @click="add(index)">+</button>
+                            </td>
+                            <td>
+                                <button @click="remove(index)">移除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>总价格：{{allPrice | showPrice}}</h2>
+            </div>
+            <h2 v-else>购物车为空</h2>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const books = new Vue({
+                el: ".books",
+                data: {
+                    bookShop: [
+                        {
+                            number: 1,
+                            name: "《算法导论》",
+                            date: 2006 - 9,
+                            price: 81,
+                            num2: 1,
+                        },
+                        {
+                            number: 2,
+                            name: "《unix》",
+                            date: 2006 - 9,
+                            price: 105,
+                            num2: 1,
+                        },
+                        {
+                            number: 3,
+                            name: "《编程》",
+                            date: 2006 - 9,
+                            price: 45,
+                            num2: 1,
+                        },
+                        {
+                            number: 4,
+                            name: "《代码》",
+                            date: 2006 - 9,
+                            price: 83,
+                            num2: 1,
+                        },
+                    ],
+                },
+                methods: {
+                    add(index) {
+                        this.bookShop[index].num2++;
+                    },
+                    sub(index) {
+                        this.bookShop[index].num2--;
+                    },
+                    remove(index) {
+                        this.bookShop.splice(index, 1);
+                    },
+                },
+                computed: {
+                    allPrice() {
+                        let allSum = 0;
+                        for (let i = 0; i < this.bookShop.length; i++) {
+                            allSum +=
+                                this.bookShop[i].price * this.bookShop[i].num2;
+                        }
+                        return allSum;
+                    },
+                },
+                filters: {
+                    showPrice(price) {
+                        // 保留两位小数
+                        return "¥" + price.toFixed(2);
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

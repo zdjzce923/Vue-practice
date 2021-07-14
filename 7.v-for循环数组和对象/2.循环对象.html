@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <nav class="p1">
+            <!-- 遍历对象 -->
+            <ul>
+                <!-- 只有一个 只会显示值 -->
+                <li v-for="name of star">{{name}}</li>
+            </ul>
+            <!-- 遍历对象 第一个为值 第二个为键 第三个为索引-->
+            <ul>
+                <li v-for="(value,key,index) of star">
+                    {{index}}-{{key}}-{{value}}
+                </li>
+            </ul>
+            <h1>{{getage()}}</h1>
+        </nav>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const p1 = new Vue({
+                el: ".p1",
+                data: {
+                    star: {
+                        name: "zdj",
+                        age: 22,
+                        height: 111,
+                        phone: 11,
+                        hair: "black",
+                    },
+                },
+                methods: {
+                    getage() {
+                        // console.log("abc");
+                        return this.star.age;
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
