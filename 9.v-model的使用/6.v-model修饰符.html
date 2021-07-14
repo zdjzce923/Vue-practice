@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="p1">
+            <!-- 1.lazy 当为input绑定v-mode时 textvalue会跟着刷新最新值 
+                        lazy修饰符可以在数据失去焦点或回车才更新 -->
+            <input type="text" v-model.lazy="textvalue" />
+            <h2>{{textvalue}}</h2>
+            <!-- 2.number 当传入的数据无论输入的是字母还是数字都会被当作字符串 
+                          如果希望处理的值是数字 则使用修饰符 .number-->
+            <input type="text" v-model.number="textNumber" />
+            <h2>{{textNumber}}</h2>
+            <h2>{{typeof textNumber}}</h2>
+            <!-- 3.trim修饰符 去除空格-->
+            <input type="text" v-model.trim="texttrim" />
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const p1 = new Vue({
+                el: ".p1", 
+                data: {
+                    textvalue: "nihao",
+                    textNumber: 11111,
+                    texttrim: "      ",
+                },
+            });
+        </script>
+    </body>
+</html>

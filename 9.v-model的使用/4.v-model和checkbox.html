@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="p1">
+            <!-- 单选框
+            <label for="agree">
+                <input
+                    type="checkbox"
+                    name=""
+                    id="agree"
+                    v-model="isagree"
+                />同意
+            </label>
+            <h2>{{isagree}}</h2>
+            <button :disabled="!isagree">提交</button> -->
+            <!-- 多选框 -->
+            <input
+                type="checkbox"
+                name=""
+                id=""
+                value="篮球"
+                v-model="choosehb"
+            />篮球
+            <input
+                type="checkbox"
+                name=""
+                id=""
+                value="足球"
+                v-model="choosehb"
+            />足球
+            <input
+                type="checkbox"
+                name=""
+                id=""
+                value="排球"
+                v-model="choosehb"
+            />排球
+            <h2>您选择的是{{choosehb}}</h2>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+            const p1 = new Vue({
+                el: ".p1",
+                data: {
+                    message: "你好",
+                    isagree: false,
+                    choosehb: [],
+                },
+            });
+        </script>
+    </body>
+</html>
