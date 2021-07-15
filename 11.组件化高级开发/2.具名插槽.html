@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="temp">
+            <div>
+                <!-- 可以为slot使用name属性 方便在父组件进行替换 -->
+                <slot name="left"><span>左边</span></slot>
+                <slot name="center"><span>中间</span></slot>
+                <slot name="right"><span>右边</span></slot>
+            </div>
+        </template>
+        <!-- slot插槽 在有多个复用组件时 slot能帮助我们更好的复用及修改组件 -->
+        <div class="app">
+            <!--  -->
+            <cpn>
+                <span slot="left">左被替换</span>
+                <span slot="center">中间被替换</span>
+            </cpn>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                components: {
+                    cpn: {
+                        template: "#temp",
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

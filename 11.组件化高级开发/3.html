@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="temp">
+            <div>
+                <slot :data="lang">
+                    <ul>
+                        <li v-for="item in lang">{{item}}</li>
+                    </ul>
+                </slot>
+            </div>
+        </template>
+        <div class="app">
+            <cpn>
+                <div slot-scope="slot">
+                    <span>{{slot.data.join("- ")}}</span>
+                </div>
+            </cpn>
+            <cpn></cpn>
+            <cpn></cpn>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                components: {
+                    cpn: {
+                        template: "#temp",
+                        data() {
+                            return {
+                                lang: ["py", "c++", "c#", "java", "js"],
+                            };
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

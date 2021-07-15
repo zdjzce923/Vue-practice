@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="temp">
+            <div>
+                <!-- slot可以绑定name属性作为标识符 也可以绑定一个别的属性里面可以存放数据 -->
+                <slot :data="lang">
+                    <ul>
+                        <li v-for="item in lang">{{item}}</li>
+                    </ul>
+                </slot>
+            </div>
+        </template>
+        <div class="app">
+            <!-- 改变子组件的连接方式 -->
+            <!-- 要从父组件中更改子组件传递的数据 用slot-scope -->
+            <cpn>
+                <!-- 在里面使用div -->
+                <div slot-scope="slot">
+                    <span>{{slot.data.join("- ")}}</span>
+                </div>
+            </cpn>
+            <cpn></cpn>
+            <cpn></cpn>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                components: {
+                    cpn: {
+                        template: "#temp",
+                        data() {
+                            return {
+                                lang: ["py", "c++", "c#", "java", "js"],
+                            };
+                        },
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>

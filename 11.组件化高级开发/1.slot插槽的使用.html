@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <template id="temp">
+            <div>
+                <h2>slot</h2>
+                <!-- 可以给他设置默认值 不传元素就显示默认值 -->
+                <slot><button>我是按钮</button></slot>
+            </div>
+        </template>
+        <!-- slot插槽 在有多个复用组件时 slot能帮助我们更好的复用及修改组件 -->
+        <div class="app">
+            <cpn><h2>我是传的第一个值</h2></cpn>
+            <cpn></cpn>
+            <cpn></cpn>
+            <cpn></cpn>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: ".app",
+                components: {
+                    cpn: {
+                        template: "#temp",
+                    },
+                },
+            });
+        </script>
+    </body>
+</html>
